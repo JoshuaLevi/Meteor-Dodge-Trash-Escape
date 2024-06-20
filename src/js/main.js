@@ -1,4 +1,4 @@
-
+import '../css/style.css';
 import { Color, DisplayMode, Engine, Physics, Vector } from "excalibur";
 import { ResourceLoader } from './resources.js';
 import { Menuscreen } from "./scenes/menuscreen.js";
