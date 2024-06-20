@@ -1,4 +1,4 @@
-import {ImageSource, Loader, Sound} from 'excalibur'
+import { ImageSource, Loader, Sound, ImageWrapping } from 'excalibur';
 import walkSheet from '../img/characters/player_spritesheet_walk_1x15.png'
 import runSheet from '../img/characters/player_spritesheet_run_1x15.png'
 import jumpSheet from '../img/characters/player_spritesheet_jump_1x15.png'
@@ -20,7 +20,7 @@ const Resources = {
     PlayerWalk: new ImageSource(walkSheet),
     PlayerRun: new ImageSource(runSheet),
     PlayerJump: new ImageSource(jumpSheet),
-    Background: new ImageSource(backgroundImage),
+    Background: new ImageSource(backgroundImage, { wrapping: ImageWrapping.Repeat }),
     Trash: new ImageSource(trash),
     Meteor: new ImageSource(meteor),
     Medkit: new ImageSource(medkit),

@@ -21,6 +21,7 @@ export class Menuscreen extends Scene {
                 bold: true
             })
         })
+        this.add(startMessage);
 
         const title = new Label({
             text: `Meteor Dodge: Trash Escape`,
@@ -36,6 +37,8 @@ export class Menuscreen extends Scene {
           
             })
         })
+        this.add(title);
+
         //
         // const settings = new Label({
         //     width: 190,
@@ -58,9 +61,8 @@ export class Menuscreen extends Scene {
         menuBackground.graphics.opacity = 0.7
         this.add(menuBackground)
 
-        this.add(startMessage)
-        this.add(title)
         // this.add(settings)
+
     }
 
     onPostUpdate(engine, delta) {

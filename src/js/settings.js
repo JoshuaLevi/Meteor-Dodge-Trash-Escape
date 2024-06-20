@@ -12,7 +12,7 @@ export const Settings = {
     groundHeight: 80,
 
     //Player:
-    startY: 600,
+    startY: 800,
     startX: 200,
     runSpeed: 400,
 
