@@ -20,12 +20,16 @@ export class Background extends Actor {
     }
 
     onInitialize(engine) {
-        const background = Resources[this.backgroundName].toSprite();
+        console.log('Initializing Background...');
+        console.log(`backgroundName: ${this.backgroundName}, backgroundSpeed: ${this.backgroundSpeed}`);
+
+        const background = Resources[this.backgroundName]?.toSprite();
 
         // Debugging: Log background sprite and its properties
         console.log('Background sprite:', background);
         if (background && background.width) {
             this.offset = background.width;
+            console.log(`Background width: ${this.offset}`);
 
             const repeatSpriteGroup = new GraphicsGroup({
                 members: [
@@ -40,13 +44,12 @@ export class Background extends Actor {
                 ]
             });
 
+            console.log('GraphicsGroup initialized:', repeatSpriteGroup);
+
             this.graphics.anchor = new Vector(0, 0);
             this.graphics.add(repeatSpriteGroup);
             this.pos = new Vector(0, 0);
             this.vel = new Vector(-this.backgroundSpeed, 0);
-
-            // Debugging: Log repeatSpriteGroup
-            console.log('GraphicsGroup initialized:', repeatSpriteGroup);
         } else {
             console.error(`Background sprite ${this.backgroundName} could not be found or has no width property`);
         }
