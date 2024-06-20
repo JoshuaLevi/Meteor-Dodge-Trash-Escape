@@ -1,4 +1,4 @@
-import {Actor, Vector, GraphicsGroup, vec} from "excalibur";
+import { Actor, Vector, GraphicsGroup } from "excalibur";
 import { Resources } from "../resources.js";
 
 /**
@@ -11,19 +11,20 @@ import { Resources } from "../resources.js";
  * backgroundSpeed (sideways speed in an integer)
  */
 
-export class Background extends Actor{
-
-    offset
-
+export class Background extends Actor {
     constructor(backgroundName, backgroundSpeed) {
-        super()
+        super();
         this.backgroundName = backgroundName;
         this.backgroundSpeed = backgroundSpeed;
+        this.offset = 0; // Initialize offset to avoid undefined errors
     }
 
-        onInitialize(engine)
-        {
-            const background = Resources[this.backgroundName].toSprite();
+    onInitialize(engine) {
+        const background = Resources[this.backgroundName].toSprite();
+
+        // Debugging: Log background sprite and its properties
+        console.log('Background sprite:', background);
+        if (background && background.width) {
             this.offset = background.width;
 
             const repeatSpriteGroup = new GraphicsGroup({
@@ -37,19 +38,23 @@ export class Background extends Actor{
                         pos: new Vector(background.width, 0)
                     }
                 ]
-            })
+            });
 
             this.graphics.anchor = new Vector(0, 0);
             this.graphics.add(repeatSpriteGroup);
             this.pos = new Vector(0, 0);
             this.vel = new Vector(-this.backgroundSpeed, 0);
-        }
 
-        onPostUpdate(engine, delta)
-        {
-            if (this.pos.x < -this.offset) {
-                this.pos = new Vector(0, 0)
-            }
+            // Debugging: Log repeatSpriteGroup
+            console.log('GraphicsGroup initialized:', repeatSpriteGroup);
+        } else {
+            console.error(`Background sprite ${this.backgroundName} could not be found or has no width property`);
         }
     }
 
+    onPostUpdate(engine, delta) {
+        if (this.pos.x < -this.offset) {
+            this.pos = new Vector(0, 0);
+        }
+    }
+}
